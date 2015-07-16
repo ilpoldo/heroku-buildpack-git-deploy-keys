@@ -30,7 +30,7 @@ arrow "############################################"
 
 arrow "ssh dir is #{ssh_dir}"
 ################# Get the key from heroku's environment config #################
-puts "File.join #{ENV['ENV_DIR'].inspect}, 'GITHUB_DEPLOY_KEY'"
+puts ENV.keys.inspect
 key_file_path = File.join ENV['ENV_DIR'], 'GITHUB_DEPLOY_KEY'
 ssh_key = ENV['GITHUB_DEPLOY_KEY']
 
