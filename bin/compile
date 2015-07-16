@@ -30,9 +30,9 @@ arrow "############################################"
 
 arrow "ssh dir is #{ssh_dir}"
 ################# Get the key from heroku's environment config #################
-puts ENV.keys.inspect
-key_file_path = File.join ENV['ENV_DIR'], 'GITHUB_DEPLOY_KEY'
-ssh_key = ENV['GITHUB_DEPLOY_KEY']
+puts "File.join #{ARGV.inspect}, 'GITHUB_DEPLOY_KEY'"
+key_file_path = File.join env_dir, 'GITHUB_DEPLOY_KEY'
+ssh_key = File.open(key_file_path, &:read) if File.exist? key_file_path
 
 if ssh_key.nil?
   alert "GITHUB_DEDLOY_KEY not set"
