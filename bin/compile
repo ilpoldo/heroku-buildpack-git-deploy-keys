@@ -108,7 +108,9 @@ end
 FileUtils.chmod 0600, "#{ssh_dir}/config"
 arrow "Wrote config to user's config"
 
-unless `ssh -T git@github.com 2>&1`.include? "successfully authenticated"
+test_connection = `ssh -T git@github.com 2>&1`
+unless test_connection.include? "successfully authenticated"
   alert "ssh key error"
+  alert test_connection
   exit 1
 end
